@@ -40,6 +40,7 @@ bismark_genome_preparation ./
 ```
 multiqc --filename "PRJEB6698_multiqc_pretrim_report.html" . &
 ```
+
 ## Bismark BT2 Alignment and Methylation Calls
 Note: For RRBS it is not recommended to deduplicate
 1. Run `PRJEB6698_Bismark_Align_GRCm39_BT2.bash` to align reads to Bisulfite converted genomes
@@ -58,3 +59,14 @@ module load bedops/2.4.35
 awk '{ if ($0 ~ "transcript_id") print $0; else print $0" transcript_id \"\";"; }' Mus_musculus.GRCm39.109.gtf| gtf2bed - > Mus_musculus.GRCm39.109.bed
 infer_experiment.py -r /ix1/mmann/KoppesEA/REF_Sequences/Mus_musculus/GRCm39_ref/Mus_musculus.GRCm39.109.bed -i /ix1/mmann/KoppesEA/PRJEB6698/Bismark/ERR560527_1_val_1_bismark_bt2_pe_sorted.bam
 ```
+3. Run `PRJEB6698_Bismark_MethExtractor.bash` to tabulate methylation fractions for each Cytosine; output with focus on CpG methylation
+
+## Differential methylation analysis using methylKit
+1. Run `PRJEB6698_methylKit_script.R` [Work in progress] to perform differential methylation and annotate CGIs
+
+## References and Links:
+1. [DNMT1-TETOFF Paper] Transient DNMT1 suppression reveals hidden heritable marks in the genome. 2015. NAR. Serge McGraw, Jacques X Zhang, Mena Farag, Donovan Chan, Maxime Caron, Carolin Konermann, Christopher C Oakes, K Naga Mohan, Christoph Plass, Tomi Pastinen, Guillaume Bourque, J Richard Chaillet, Jacquetta M Trasler.
+2. [FastQC]: https://github.com/s-andrews/FastQC
+3. [TrimGalore]: https://github.com/FelixKrueger/TrimGalore
+4. [Bismark]: https://github.com/FelixKrueger/Bismark
+5. [methylKit]: https://bioconductor.org/packages/release/bioc/html/methylKit.html
