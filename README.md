@@ -62,11 +62,11 @@ infer_experiment.py -r /ix1/mmann/KoppesEA/REF_Sequences/Mus_musculus/GRCm39_ref
 3. Run `PRJEB6698_Bismark_MethExtractor.bash` to tabulate methylation fractions for each Cytosine; output with focus on CpG methylation
 
 ## Differential methylation analysis using methylKit
-1. Run `PRJEB6698_methylKit_script.R` [Work in progress] to perform differential methylation and annotate CGIs
+1. Run `PRJEB6698_methylKit_script.R` (Work in progress) to perform differential methylation and annotate CGIs
 
 ## References and Links:
-1. [DNMT1-TETOFF Paper] Transient DNMT1 suppression reveals hidden heritable marks in the genome. 2015. NAR. Serge McGraw, Jacques X Zhang, Mena Farag, Donovan Chan, Maxime Caron, Carolin Konermann, Christopher C Oakes, K Naga Mohan, Christoph Plass, Tomi Pastinen, Guillaume Bourque, J Richard Chaillet, Jacquetta M Trasler.
-2. [FastQC]: https://github.com/s-andrews/FastQC
-3. [TrimGalore]: https://github.com/FelixKrueger/TrimGalore
-4. [Bismark]: https://github.com/FelixKrueger/Bismark
-5. [methylKit]: https://bioconductor.org/packages/release/bioc/html/methylKit.html
+1. DNMT1-TETOFF Paper: Transient DNMT1 suppression reveals hidden heritable marks in the genome. 2015. NAR. Serge McGraw, Jacques X Zhang, Mena Farag, Donovan Chan, Maxime Caron, Carolin Konermann, Christopher C Oakes, K Naga Mohan, Christoph Plass, Tomi Pastinen, Guillaume Bourque, J Richard Chaillet, Jacquetta M Trasler.
+3. FastQC: https://github.com/s-andrews/FastQC
+4. TrimGalore: https://github.com/FelixKrueger/TrimGalore
+5. Bismark: https://github.com/FelixKrueger/Bismark
+6. methylKit: https://bioconductor.org/packages/release/bioc/html/methylKit.html
