@@ -34,4 +34,27 @@ bismark_genome_preparation ./
 ```
 
 ## Fastq Trimming and QC
-1. Implement ``
+1. Run `PRJEB6698_pretrimqc.bash` to perform pre-trim QC
+2. Run `PRJEB6698_trimRRBS.bash` to perform RRBS trimming and post-trim QC with trimgalore
+3. Run multiqc in both pretrim and trim QC directories:
+```
+multiqc --filename "PRJEB6698_multiqc_pretrim_report.html" . &
+```
+## Bismark BT2 Alignment and Methylation Calls
+Note: For RRBS it is not recommended to deduplicate
+1. Run `PRJEB6698_Bismark_Align_GRCm39_BT2.bash` to align reads to Bisulfite converted genomes
+2. Check  BAM files [optional]
+Bismark BAM output is unsorted and unindexed
+```
+samtools view -H *ERR560529_1_val_1_bismark_bt2_pe.bam | grep SO
+@HD	VN:1.0	SO:unsorted
+```
+Bismark Alignment with Directional (MspI/HpaII CCGG cut) is PE with unstranded (genomic)
+```
+wget https://ftp.ensembl.org/pub/release-109/gtf/mus_musculus/Mus_musculus.GRCm39.109.gtf.gz
+gunzip -c Mus_musculus.GRCm39.109.gtf.gz > Mus_musculus.GRCm39.109.gtf
+module load rseqc/2.6.6
+module load bedops/2.4.35
+awk '{ if ($0 ~ "transcript_id") print $0; else print $0" transcript_id \"\";"; }' Mus_musculus.GRCm39.109.gtf| gtf2bed - > Mus_musculus.GRCm39.109.bed
+infer_experiment.py -r /ix1/mmann/KoppesEA/REF_Sequences/Mus_musculus/GRCm39_ref/Mus_musculus.GRCm39.109.bed -i /ix1/mmann/KoppesEA/PRJEB6698/Bismark/ERR560527_1_val_1_bismark_bt2_pe_sorted.bam
+```
